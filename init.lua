@@ -24,6 +24,8 @@ local function load(args)
 			end
 
 			return true, result
+		else
+			print(compileError)
 		end
 	else
 		print("Failed")

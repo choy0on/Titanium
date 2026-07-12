@@ -1,8 +1,9 @@
 local placeId = tostring(game.PlaceId)
 
 local url = string.format(
-	"https://raw.githubusercontent.com/choy0on/Titanium/main/places/%s.lua",
-	placeId
+	"https://raw.githubusercontent.com/choy0on/Titanium/main/places/%s.lua?cache=%s",
+	placeId,
+	tostring(os.time())
 )
 
 local function traceback(errorMessage)

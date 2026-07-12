@@ -14,6 +14,7 @@ return function()
     pcall(function()
         if workspace:FindFirstChild("SpawnedCars") then
             while task.wait(1) do
+                print(carLabelList)
                 for i,v in pairs(workspace:FindFirstChild("SpawnedCars"):GetChildren()) do
                     if v:FindFirstChild("nameEffect") then
                         if carLabelList[i] then

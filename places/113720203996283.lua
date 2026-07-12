@@ -13,7 +13,7 @@ return function()
 
     pcall(function()
         if workspace:FindFirstChild("SpawnedCars") then
-            workspace:FindFirstChild("SpawnedCars"):GetPropertyChangedSignal("childAdded"):Connect(function()
+            workspace:FindFirstChild("SpawnedCars").ChildAdded:Connect(function(car)
                 for i,v in pairs(workspace:FindFirstChild("SpawnedCars"):GetChildren()) do
                     if v:FindFirstChild("nameEffect") then
                         if carLabelList[i] then

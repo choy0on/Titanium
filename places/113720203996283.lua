@@ -17,9 +17,9 @@ return function()
                 for i,v in pairs(workspace:FindFirstChild("SpawnedCars"):GetChildren()) do
                     if v:FindFirstChild("nameEffect") then
                         if carLabelList[i] then
-                            carLabelList[i]:Set(v.nameEffect.PartName.NameLabel.Text .. " | " .. v.nameEffect.Cost.Text)
+                            carLabelList[i]:Set(v.nameEffect.PartName.NameLabel.Text .. "|" .. v.nameEffect.Rarity.Text .. " | " .. v.nameEffect.Cost.Text)
                         else
-                            local newLabel = mainSection:Label(v.nameEffect.PartName.NameLabel.Text .. " | " .. v.nameEffect.Cost.Text)
+                            local newLabel = mainSection:Label(v.nameEffect.PartName.NameLabel.Text .. "|" .. v.nameEffect.Rarity.Text .. " | " .. v.nameEffect.Cost.Text)
                             table.insert(carLabelList, newLabel)
                         end
                     end

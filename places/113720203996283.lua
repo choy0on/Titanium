@@ -59,4 +59,6 @@ return function()
     )
 
     mainSection:Label("SolarisLib 정상 로드")
+
+    return window
 end

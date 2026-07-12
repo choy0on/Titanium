@@ -9,22 +9,22 @@ return function()
     local mainTab = window:Tab("Main")
     local mainSection = mainTab:Section("Now Cars")
 
-    local dropdown = mainSection:Dropdown("Dropdown", {"a","b","c","d","e"},"","Dropdown", function(t)
-        
-    end)
+    local carLabelList = {}
 
     pcall(function()
-        while task.wait(1) do
-            
-            local carList = {}
-
-            for i,v in pairs(workspace:FindFirstChild("SpawnedCars"):GetChildren()) do
-                if v:FindFirstChild("nameEffect") then
-                    table.insert(carList, v:FindFirstChild("nameEffect"):FindFirstChild("PartName"):findFirstChild("NameLabel").Text .. " / " .. v:FindFirstChild("nameEffect"):findFirstChild("Cost").Text)
+        if workspace:FindFirstChild("SpawnedCars") then
+            workspace:FindFirstChild("SpawnedCars"):GetPropertyChangedSignal("childAdded"):Connect(function()
+                for i,v in pairs(workspace:FindFirstChild("SpawnedCars"):GetChildren()) do
+                    if v:FindFirstChild("nameEffect") then
+                        if carLabelList[i] then
+                            carLabelList[i]:Set(v.nameEffect.PartName.NameLabel.Text)
+                        else
+                            local newLabel = mainSection:Label(v.nameEffect.PartName.NameLabel.Text)
+                            table.insert(carLabelList, newLabel)
+                        end
+                    end
                 end
-            end
-
-            dropdown:Refresh(carList, true)
+            end)
         end
     end)
 

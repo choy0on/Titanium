@@ -7,20 +7,19 @@ return function()
     })
 
     local mainTab = window:Tab("Main")
-    local mainSection = mainTab:Section("Now Cars")
+    local mainSection = mainTab:Section("Cars")
 
     local carLabelList = {}
 
     pcall(function()
         if workspace:FindFirstChild("SpawnedCars") then
             while task.wait(1) do
-                print(carLabelList)
                 for i,v in pairs(workspace:FindFirstChild("SpawnedCars"):GetChildren()) do
                     if v:FindFirstChild("nameEffect") then
                         if carLabelList[i] then
-                            carLabelList[i]:Set(v.nameEffect.PartName.NameLabel.Text)
+                            carLabelList[i]:Set(v.nameEffect.PartName.NameLabel.Text .. " | " .. v.nameEffect.Cost.Text)
                         else
-                            local newLabel = mainSection:Label(v.nameEffect.PartName.NameLabel.Text)
+                            local newLabel = mainSection:Label(v.nameEffect.PartName.NameLabel.Text .. " | " .. v.nameEffect.Cost.Text)
                             table.insert(carLabelList, newLabel)
                         end
                     end

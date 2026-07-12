@@ -39,8 +39,8 @@ return function()
 
     MainS:Toggle("Remove All Obstacles", false, "RemoveAllObstacles", function(t)
         if t then
-            getgenv().RemoveAllBroker = true
-            while getgenv().RemoveAllBroker do
+            getgenv().RemoveAllObstacles = true
+            while getgenv().RemoveAllObstacles do
                 task.wait()
                 pcall(function()
                     for i,v in pairs(workspace:FindFirstChild("Obstacles"):GetDescendants()) do

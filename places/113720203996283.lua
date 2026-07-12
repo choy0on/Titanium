@@ -48,6 +48,12 @@ return function()
                             v:Destroy()
                         end
                     end
+
+                    for i,v in pairs(workspace:FindFirstChild("Stages"):GetDescendants()) do
+                        if v.Name == "OBSTACLES" then
+                            v:Destroy()
+                        end
+                    end
                 end)
             end
         else

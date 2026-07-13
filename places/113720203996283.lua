@@ -105,13 +105,7 @@ return function()
     pcall(function()
         workspace:FindFirstChild("Obstacles").ChildAdded:Connect(function(child)
             if getgenv().RemoveAllObstacles then
-                pcall(function()
-                    for i,v in pairs(child:GetDescendants()) do
-                        if v:IsA("Model") then
-                            v:Destroy()
-                        end
-                    end
-                end)
+                child:Destroy()
             end
         end)
 

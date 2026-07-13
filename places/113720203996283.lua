@@ -112,6 +112,9 @@ return function()
 
         workspace:FindFirstChild("Stages").ChildAdded:Connect(function(child)
             task.wait(0.1)
+
+            child:FindFirstChild("OBSTACLES"):Destroy()
+
             if getgenv().RemoveAllObstacles then
                 pcall(function()
                     for i,v in pairs(child:GetDescendants()) do
@@ -129,6 +132,10 @@ return function()
 
         workspace:FindFirstChild("UndergroundStages", true).ChildAdded:Connect(function(child)
             task.wait(0.1)
+
+            child:FindFirstChild("OBSTACLES"):Destroy()
+            child:FindFirstChild("Obstacless"):Destroy()
+
             if getgenv().RemoveAllObstacles then
                 pcall(function()
                     for i,v in pairs(child:GetDescendants()) do

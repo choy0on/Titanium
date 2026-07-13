@@ -117,7 +117,7 @@ return function()
                             v:Destroy()
                         end
 
-                        if v.Name == "Bumps" then
+                        if v.Name == "Humps" then
                             v:Destroy()
                         end
                     end

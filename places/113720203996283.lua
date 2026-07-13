@@ -104,54 +104,37 @@ return function()
 
     pcall(function()
         workspace:FindFirstChild("Obstacles").ChildAdded:Connect(function(child)
-            for i = 1, 5 do
-                if getgenv().RemoveAllObstacles then
-                    child:Destroy()
+            for i,v in pairs(workspace:FindFirstChild("Obstacles"):GetDescendants()) do
+                if v:IsA("Model") then
+                    v:Destroy()
                 end
             end
         end)
 
         workspace:FindFirstChild("Stages").ChildAdded:Connect(function(child)
-            for i = 1, 5 do
-                child:FindFirstChild("OBSTACLES"):Destroy()
+            for i,v in pairs(workspace:FindFirstChild("Stages"):GetDescendants()) do
+                if v.Name == "OBSTACLES" then
+                    v:Destroy()
+                end
 
-                if getgenv().RemoveAllObstacles then
-                    pcall(function()
-                        for i,v in pairs(child:GetDescendants()) do
-                            if v.Name == "OBSTACLES" then
-                                v:Destroy()
-                            end
-
-                            if v.Name == "Humps" then
-                                v:Destroy()
-                            end
-                        end
-                    end)
+                if v.Name == "Humps" then
+                    v:Destroy()
                 end
             end
         end)
 
-        workspace:FindFirstChild("UndergroundStages", true).ChildAdded:Connect(function(child)
-            for i = 1, 5 do
-                child:FindFirstChild("OBSTACLES"):Destroy()
-                child:FindFirstChild("Obstacless"):Destroy()
+        workspace:FindFirstChild("UndergroundStages").ChildAdded:Connect(function(child)
+            for i,v in pairs(workspace:FindFirstChild("UndergroundStages"):GetDescendants()) do
+                if v.Name == "OBSTACLES" then
+                    v:Destroy()
+                end
 
-                if getgenv().RemoveAllObstacles then
-                    pcall(function()
-                        for i,v in pairs(child:GetDescendants()) do
-                            if v.Name == "OBSTACLES" then
-                                v:Destroy()
-                            end
+                if v.Name == "Meshes/QuickBump" then
+                    v:Destroy()
+                end
 
-                            if v.Name == "Meshes/QuickBump" then
-                                v:Destroy()
-                            end
-
-                            if v.Name == "Obstacless" then
-                                v:Destroy()
-                            end
-                        end
-                    end)
+                if v.Name == "Obstacless" then
+                    v:Destroy()
                 end
             end
         end)

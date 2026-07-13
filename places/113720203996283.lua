@@ -66,26 +66,75 @@ return function()
     MainS:Toggle("Remove All Obstacles (Include Map Objects)", false, "RemoveAllObstacles", function(t)
         if t then
             getgenv().RemoveAllObstacles = true
-            while getgenv().RemoveAllObstacles do
-                task.wait()
+
+            for i,v in pairs(workspace:FindFirstChild("Obstacles"):GetDescendants()) do
+                if v:IsA("Model") then
+                    v:Destroy()
+                end
+            end
+
+            for i,v in pairs(workspace:FindFirstChild("Stages"):GetDescendants()) do
+                if v.Name == "OBSTACLES" then
+                    v:Destroy()
+                end
+
+                if v.Name == "Bumps" then
+                    v:Destroy()
+                end
+            end
+
+            for i,v in pairs(workspace:FindFirstChild("UndergroundStages"):GetDescendants()) do
+                if v.Name == "OBSTACLES" then
+                    v:Destroy()
+                end
+
+                if v.Name == "Meshes/QuickBump" then
+                    v:Destroy()
+                end
+
+                if v.Name == "Obstacless" then
+                    v:Destroy()
+                end
+            end
+        else
+            getgenv().RemoveAllObstacles = false
+        end
+
+    end)
+
+    pcall(function()
+        workspace:FindFirstChild("Obstacles").ChildAdded:Connect(function(child)
+            if getgenv().RemoveAllObstacles then
                 pcall(function()
-                    for i,v in pairs(workspace:FindFirstChild("Obstacles"):GetDescendants()) do
+                    for i,v in pairs(child:GetDescendants()) do
                         if v:IsA("Model") then
                             v:Destroy()
                         end
                     end
+                end)
+            end
+        end)
 
-                    for i,v in pairs(workspace:FindFirstChild("Stages"):GetDescendants()) do
+        workspace:FindFirstChild("Stages").ChildAdded:Connect(function(child)
+            if getgenv().RemoveAllObstacles then
+                pcall(function()
+                    for i,v in pairs(child:GetDescendants()) do
                         if v.Name == "OBSTACLES" then
                             v:Destroy()
                         end
 
-                        if v.Name == "Humps" then
+                        if v.Name == "Bumps" then
                             v:Destroy()
                         end
                     end
+                end)
+            end
+        end)
 
-                    for i,v in pairs(workspace:FindFirstChild("UndergroundStages"):GetDescendants()) do
+        workspace:FindFirstChild("UndergroundStages", true).ChildAdded:Connect(function(child)
+            if getgenv().RemoveAllObstacles then
+                pcall(function()
+                    for i,v in pairs(child:GetDescendants()) do
                         if v.Name == "OBSTACLES" then
                             v:Destroy()
                         end
@@ -100,10 +149,7 @@ return function()
                     end
                 end)
             end
-        else
-            getgenv().RemoveAllObstacles = false
-        end
-
+        end)
     end)
 
     local CarSection = mainTab:Section("Cars")

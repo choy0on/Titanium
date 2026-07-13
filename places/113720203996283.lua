@@ -19,6 +19,8 @@ return function()
 
     local mainTab = window:Tab("Main")
 
+    local eventTab = window:Tab("Event")
+
     local MainS = mainTab:Section("Main")
 
     MainS:Toggle("Auto Farm", false, "Farm", function(t)

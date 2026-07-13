@@ -89,6 +89,14 @@ return function()
                         if v.Name == "OBSTACLES" then
                             v:Destroy()
                         end
+
+                        if v.Name == "Meshes/QuickBump" then
+                            v:Destroy()
+                        end
+
+                        if v.Name == "Obstacless" then
+                            v:Destroy()
+                        end
                     end
                 end)
             end
@@ -103,7 +111,7 @@ return function()
     local carLabelList = {}
 
     pcall(function()
-		if workspace:FindFirstChild("SpawnedCars") then
+        if workspace:FindFirstChild("SpawnedCars") then
 			workspace:FindFirstChild("SpawnedCars").ChildAdded:Connect(function(car)
 				local nameEffect = car:WaitForChild("nameEffect", 10)
 				local nameLabel = nameEffect:WaitForChild("PartName", 10).NameLabel

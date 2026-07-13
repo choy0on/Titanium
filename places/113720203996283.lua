@@ -78,7 +78,7 @@ return function()
                     v:Destroy()
                 end
 
-                if v.Name == "Bumps" then
+                if v.Name == "Humps" then
                     v:Destroy()
                 end
             end
@@ -104,54 +104,55 @@ return function()
 
     pcall(function()
         workspace:FindFirstChild("Obstacles").ChildAdded:Connect(function(child)
-            task.wait(0.1)
-            if getgenv().RemoveAllObstacles then
-                child:Destroy()
+            for i = 1, 5 do
+                if getgenv().RemoveAllObstacles then
+                    child:Destroy()
+                end
             end
         end)
 
         workspace:FindFirstChild("Stages").ChildAdded:Connect(function(child)
-            task.wait(0.1)
+            for i = 1, 5 do
+                child:FindFirstChild("OBSTACLES"):Destroy()
 
-            child:FindFirstChild("OBSTACLES"):Destroy()
+                if getgenv().RemoveAllObstacles then
+                    pcall(function()
+                        for i,v in pairs(child:GetDescendants()) do
+                            if v.Name == "OBSTACLES" then
+                                v:Destroy()
+                            end
 
-            if getgenv().RemoveAllObstacles then
-                pcall(function()
-                    for i,v in pairs(child:GetDescendants()) do
-                        if v.Name == "OBSTACLES" then
-                            v:Destroy()
+                            if v.Name == "Humps" then
+                                v:Destroy()
+                            end
                         end
-
-                        if v.Name == "Humps" then
-                            v:Destroy()
-                        end
-                    end
-                end)
+                    end)
+                end
             end
         end)
 
         workspace:FindFirstChild("UndergroundStages", true).ChildAdded:Connect(function(child)
-            task.wait(0.1)
+            for i = 1, 5 do
+                child:FindFirstChild("OBSTACLES"):Destroy()
+                child:FindFirstChild("Obstacless"):Destroy()
 
-            child:FindFirstChild("OBSTACLES"):Destroy()
-            child:FindFirstChild("Obstacless"):Destroy()
+                if getgenv().RemoveAllObstacles then
+                    pcall(function()
+                        for i,v in pairs(child:GetDescendants()) do
+                            if v.Name == "OBSTACLES" then
+                                v:Destroy()
+                            end
 
-            if getgenv().RemoveAllObstacles then
-                pcall(function()
-                    for i,v in pairs(child:GetDescendants()) do
-                        if v.Name == "OBSTACLES" then
-                            v:Destroy()
+                            if v.Name == "Meshes/QuickBump" then
+                                v:Destroy()
+                            end
+
+                            if v.Name == "Obstacless" then
+                                v:Destroy()
+                            end
                         end
-
-                        if v.Name == "Meshes/QuickBump" then
-                            v:Destroy()
-                        end
-
-                        if v.Name == "Obstacless" then
-                            v:Destroy()
-                        end
-                    end
-                end)
+                    end)
+                end
             end
         end)
     end)

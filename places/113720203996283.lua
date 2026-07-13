@@ -50,7 +50,7 @@ return function()
             while getgenv().AutoCollectCoins do
                 task.wait()
                 pcall(function()
-                    for i,v in pairs(workspace:FindFirstChild("Coins"):GetChildren()) do
+                    for i,v in pairs(game.Workspace:FindFirstChild("Plots"):GetChildren()) do
                         if v:IsA("MeshPart") then
                             v.CFrame = char.HumanoidRootPart.CFrame
                         end
@@ -63,7 +63,7 @@ return function()
 
     end)
 
-    MainS:Toggle("Remove All Obstacles (Include Humps)", false, "RemoveAllObstacles", function(t)
+    MainS:Toggle("Remove All Obstacles (Include Map Objects)", false, "RemoveAllObstacles", function(t)
         if t then
             getgenv().RemoveAllObstacles = true
             while getgenv().RemoveAllObstacles do
@@ -81,6 +81,12 @@ return function()
                         end
 
                         if v.Name == "Humps" then
+                            v:Destroy()
+                        end
+                    end
+
+                    for i,v in pairs(workspace:FindFirstChild("UndergroundStages"):GetDescendants()) do
+                        if v.Name == "OBSTACLES" then
                             v:Destroy()
                         end
                     end
